@@ -1,4 +1,9 @@
 import "./App.css";
+import Layout from "./layout/layout";
 export default function App() {
-  return <div>App</div>;
+  return (
+    <div>
+      <Layout />
+    </div>
+  );
 }
