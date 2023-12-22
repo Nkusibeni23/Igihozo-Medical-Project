@@ -11,10 +11,67 @@
   .container {
     @apply max-w-full w-[1440px] px-5 mx-auto;
   }
+
+  .header-bg {
+    background: url("./assets/images/mask.png") no-repeat center;
+  }
   .btn {
     @apply bg-primaryColor py-[15px] px-[35px] rounded-[50px] text-white font-[600] mt-[38px];
   }
   .heading {
     @apply text-[44px] leading-[54px] font-[700] text-headingColor;
+  }
+  .text_para {
+    @apply text-[18px] leading-[30px] font-[400] text-textColor mt-[18px];
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .container {
+    @apply w-full;
+  }
+  section {
+    @apply py-[35px];
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .heading {
+    @apply text-[26px] leading-[36px];
+  }
+  .text_para {
+    @apply text-[16px] leading-7 mt-3;
+  }
+  .header {
+    @apply header-bg;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .navigation {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    background: #00000084;
+    display: none;
+  }
+  .menu {
+    width: 15rem;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: #fff;
+    z-index: 200;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    line-height: 30px;
+  }
+  .show_menu {
+    display: block !important;
   }
 }
