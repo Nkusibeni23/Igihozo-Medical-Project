@@ -48,7 +48,7 @@ const Header = () => {
   }, []);
 
   return (
-    <header className="header flex items-center" ref={headerRef}>
+    <header className="header py-6 px-3 flex items-center" ref={headerRef}>
       <div className="container">
         <div className="flex items-center justify-between">
           {/* Logo  */}

@@ -7,22 +7,32 @@
     @apply py-[75px];
   }
 }
+
 @layer components {
   .container {
     @apply max-w-full w-[1440px] px-5 mx-auto;
   }
 
-  .header-bg {
-    background: url("./assets/images/mask.png") no-repeat center;
+  .text-textColor {
+    color: gray;
   }
+
   .btn {
     @apply bg-primaryColor py-[15px] px-[35px] rounded-[50px] text-white font-[600] mt-[38px];
   }
+
   .heading {
     @apply text-[44px] leading-[54px] font-[700] text-headingColor;
   }
+
   .text_para {
     @apply text-[18px] leading-[30px] font-[400] text-textColor mt-[18px];
+  }
+  .hero_section {
+    @apply bg-[url("./assets/images/hero-bg.png")] bg-no-repeat bg-center bg-cover;
+  }
+  .header {
+    @apply bg-[url("./assets/images/mask.png")] bg-no-repeat bg-center bg-cover;
   }
 }
 
@@ -39,15 +49,11 @@
   .heading {
     @apply text-[26px] leading-[36px];
   }
+
   .text_para {
     @apply text-[16px] leading-7 mt-3;
   }
-  .header {
-    @apply header-bg;
-  }
-}
 
-@media only screen and (max-width: 768px) {
   .navigation {
     width: 100%;
     height: 100%;
@@ -58,6 +64,7 @@
     background: #00000084;
     display: none;
   }
+
   .menu {
     width: 15rem;
     height: 100%;
@@ -71,6 +78,7 @@
     align-items: center;
     line-height: 30px;
   }
+
   .show_menu {
     display: block !important;
   }
