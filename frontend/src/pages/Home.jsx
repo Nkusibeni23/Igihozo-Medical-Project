@@ -6,12 +6,13 @@ import icon01 from "../assets/images/icon01.png";
 import icon02 from "../assets/images/icon02.png";
 import icon03 from "../assets/images/icon03.png";
 import { BsArrowRight } from "react-icons/bs";
+import About from "../components/About/About";
 export default function Home() {
   return (
     <>
       {/* hero section */}
       <>
-        <section className="hero_section pt-[60px] 2xl:h-[800px]">
+        <section className="hero_section pt-[60px] 2xl:h-[800px] ">
           <div className="container">
             <div className="flex flex-col lg:flex-row gap-[90px] items-center justify-between">
               {/* hero content */}
@@ -72,7 +73,7 @@ export default function Home() {
         {/* Hero section end */}
 
         <section>
-          <div className="container">
+          <div className="container py-4">
             <div className=" lg:w-[470px] mx-auto">
               <h2 className=" heading text-center">
                 Providing the best medical services
@@ -149,6 +150,9 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        {/* About sections */}
+        <About />
       </>
     </>
   );
