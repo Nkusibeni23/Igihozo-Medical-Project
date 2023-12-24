@@ -5,6 +5,8 @@ import heroImg03 from "../assets/images/hero-img03.png";
 import icon01 from "../assets/images/icon01.png";
 import icon02 from "../assets/images/icon02.png";
 import icon03 from "../assets/images/icon03.png";
+import featureImg from "../assets/images/feature-img.png";
+import avatarIcon from "../assets/images/avatar-icon.png";
 import { BsArrowRight } from "react-icons/bs";
 import About from "../components/About/About";
 import ServiceLists from "../components/Services/ServiceLists";
@@ -145,7 +147,7 @@ export default function Home() {
                     to={"/doctors"}
                     className=" w-[44px] h-[44px] rounded-full border border-solid border-[#181A1E] mt-[30px] mx-auto flex items-center justify-center group hover:bg-primaryColor hover:border-none"
                   >
-                    <BsArrowRight className=" group-hover:text-white w-6 h-5" />
+                    <BsArrowRight className=" group-hover:text-white w-6 h-6" />
                   </Link>
                 </div>
               </div>
@@ -169,6 +171,59 @@ export default function Home() {
               </p>
             </div>
             <ServiceLists />
+          </div>
+        </section>
+        {/* feature section */}
+        <section>
+          <div className="container py-3">
+            <div className=" flex items-center justify-between flex-col lg:flex-row">
+              {/* features content */}
+              <div className="xl:w-[670px]">
+                <h2 className="heading">
+                  Get Virtual Treatment <br />
+                  anytime.
+                </h2>
+                <ul className=" pl-4 text_para">
+                  <li>1. Schedule the appointment directly.</li>
+                  <li>
+                    2. Search for your physician here. and contact their office.
+                  </li>
+                  <li>
+                    3. View our physicians who are accepting new patients, use
+                    the online scheduling tools to select an appointment time.
+                  </li>
+                </ul>
+                <Link to="/button">
+                  <button className="btn flex items-center gap-3">
+                    Learn More
+                    <BsArrowRight className="w-6 h-6" />
+                  </button>
+                </Link>
+              </div>
+              {/* features img */}
+              <div className="relative z-10 xl:w-[770px] flex justify-end mt-[50px] lg:mt-2">
+                <img src={featureImg} alt="Image features" className="w-3/4" />
+                <div className="w-[150px] h-auto lg:w-[248px] bg-white absolute bottom-[50px] left-0 md:bottom-[100px] md:left-5 z-20 p-3 pb-3 lg:pt-4 lg:px-4 lg:pb-[26px] rounded-[10px] border">
+                  <div className="flex gap-[10px] lg:gap-5">
+                    <p className="text-[10px] leading-[10px] lg:text-[14px] lg:leading-5 text-headingColor font-[600]">
+                      Tue, 24
+                    </p>
+                    <p className="text-[10px] leading-[10px] lg:text-[14px] lg:leading-5 text-gray-500 font-[400]">
+                      10:00AM
+                    </p>
+                  </div>
+                  <div className="flex items-center justify-center rounded-full w-[65px] lg:w-[96px] bg-[#CCF0F3] py-1 px-2 lg:py-[6px] lg:px-[10] text-[8px] leading-[8px] lg:text-[12px] lg:leading-4 text-irisBlueColor font-[500] mt-2 lg:mt-4 text-center">
+                    Consultation
+                  </div>
+                  <div className=" flex items-center justify-center gap-[6px] lg:gap-[10px] mt-2 lg:mt-[18px]">
+                    <img src={avatarIcon} alt="Avatar Icon" />
+                    <h4 className=" text-[10px] leading-3 lg:text-[16px] lg:leading-[22px] font-[700] text-headingColor">
+                      Baidu Wayne
+                    </h4>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
       </>
