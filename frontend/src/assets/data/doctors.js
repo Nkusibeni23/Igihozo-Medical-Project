@@ -11,7 +11,7 @@ export const doctors = [
     totalRating: 272,
     photo: doctorImg01,
     totalPatients: 1500,
-    hospital: "Mount Adora Hospital, Sylhet.",
+    hospital: "IGIHOZO MEDICAL CLINIC LTD, Nyanza",
   },
   {
     id: "02",
@@ -21,7 +21,7 @@ export const doctors = [
     totalRating: 272,
     photo: doctorImg02,
     totalPatients: 1500,
-    hospital: "Mount Adora Hospital, Sylhet.",
+    hospital: "IGIHOZO MEDICAL CLINIC LTD, Nyanza",
   },
   {
     id: "03",
@@ -31,6 +31,6 @@ export const doctors = [
     totalRating: 272,
     photo: doctorImg03,
     totalPatients: 1500,
-    hospital: "Mount Adora Hospital, Sylhet.",
+    hospital: "IGIHOZO MEDICAL CLINIC LTD, Nyanza",
   },
 ];

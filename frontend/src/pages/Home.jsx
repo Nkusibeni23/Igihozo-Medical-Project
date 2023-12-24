@@ -10,6 +10,7 @@ import avatarIcon from "../assets/images/avatar-icon.png";
 import { BsArrowRight } from "react-icons/bs";
 import About from "../components/About/About";
 import ServiceLists from "../components/Services/ServiceLists";
+import DoctorList from "../components/Doctors/DoctorList";
 
 export default function Home() {
   return (
@@ -224,6 +225,22 @@ export default function Home() {
                 </div>
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* Our Great Doctors */}
+        <section>
+          <div className="container py-3">
+            <div className=" xl:w-4/5 mx-auto">
+              <h2 className=" heading text-center">Our Great Doctors</h2>
+              <p className=" text_para text-center">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Nesciunt sunt voluptatem, nostrum consequatur sed ut cum, iusto
+                culpa, non eius aliquam consectetur vel earum velit tenetur
+                architecto dignissimos soluta odit?
+              </p>
+            </div>
+            <DoctorList />
           </div>
         </section>
       </>
