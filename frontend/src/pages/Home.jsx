@@ -13,6 +13,7 @@ import About from "../components/About/About";
 import ServiceLists from "../components/Services/ServiceLists";
 import DoctorList from "../components/Doctors/DoctorList";
 import FaqList from "../components/Faq/FaqList";
+import Testimonial from "../components/Testimonial/Testimonial";
 
 export default function Home() {
   return (
@@ -260,6 +261,21 @@ export default function Home() {
                 <FaqList />
               </div>
             </div>
+          </div>
+        </section>
+        {/* testimonial sections */}
+        <section>
+          <div className="container py-1 lg:py-4">
+            <div className=" xl:w-[470px] mx-auto">
+              <h2 className=" heading text-center">What our patient say</h2>
+              <p className=" text_para text-center">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Nesciunt sunt voluptatem, nostrum consequatur sed ut cum, iusto
+                culpa, non eius aliquam consectetur vel earum velit tenetur
+                architecto dignissimos soluta odit?
+              </p>
+            </div>
+            <Testimonial />
           </div>
         </section>
       </>
