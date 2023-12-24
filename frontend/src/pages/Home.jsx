@@ -7,6 +7,8 @@ import icon02 from "../assets/images/icon02.png";
 import icon03 from "../assets/images/icon03.png";
 import { BsArrowRight } from "react-icons/bs";
 import About from "../components/About/About";
+import ServiceLists from "../components/Services/ServiceLists";
+
 export default function Home() {
   return (
     <>
@@ -153,6 +155,22 @@ export default function Home() {
 
         {/* About sections */}
         <About />
+
+        {/* Services sections */}
+        <section>
+          <div className="container py-3">
+            <div className=" xl:w-4/5 mx-auto">
+              <h2 className=" heading text-center">Our medical services</h2>
+              <p className=" text_para text-center">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Nesciunt sunt voluptatem, nostrum consequatur sed ut cum, iusto
+                culpa, non eius aliquam consectetur vel earum velit tenetur
+                architecto dignissimos soluta odit?
+              </p>
+            </div>
+            <ServiceLists />
+          </div>
+        </section>
       </>
     </>
   );
