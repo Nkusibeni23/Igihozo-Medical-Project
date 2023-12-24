@@ -266,7 +266,7 @@ export default function Home() {
         {/* testimonial sections */}
         <section>
           <div className="container py-1 lg:py-4">
-            <div className=" xl:w-[470px] mx-auto">
+            <div className=" xl:w-4/5 mx-auto">
               <h2 className=" heading text-center">What our patient say</h2>
               <p className=" text_para text-center">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
