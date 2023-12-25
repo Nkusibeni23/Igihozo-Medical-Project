@@ -64,7 +64,7 @@ export default function DoctorAbout() {
           </li>
           <li className=" p-4 rounded-lg bg-[#fff9ea]">
             <span className="  text-yellowColor text-[15px] leading-6 font-semibold">
-              {formatDate("17-05-2017")}-{formatDate("11-08-2020")}
+              {formatDate("11-05-2017")}-{formatDate("11-08-2020")}
             </span>
             <p className=" text-[16px] leading-6 font-medium text-headingColor">
               Sr.Surgeon
