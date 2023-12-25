@@ -66,10 +66,10 @@ export default function footer() {
   const year = new Date().getFullYear();
   return (
     <footer>
-      <div className="container py-3">
+      <div className="container py-3 xl:py-6">
         <div className=" flex justify-between flex-col md:flex-row flex-wrap gap-[30px]">
           <div>
-            <img src={Logo} alt="Image logo" />
+            <img src={Logo} alt="Image logo" className="w-2/5 h-3/5" />
             <p className=" text-[16px] leading-7 font-[400] text-gray-400 mt-4">
               Copyright &copy; {year} developed by Baidu all right reserved.
             </p>

@@ -19,7 +19,7 @@ const navLink = [
   },
   {
     path: "/contact",
-    display: "Contact Us",
+    display: "Contact",
   },
 ];
 
@@ -50,14 +50,14 @@ const Header = () => {
   return (
     <header className="header py-6 px-3 flex items-center" ref={headerRef}>
       <div className="container">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between gap-3">
           {/* Logo  */}
           <div>
-            <img src={logo} alt="Logo" />
+            <img src={logo} alt="Logo" className=" w-2/5 h-1/5" />
           </div>
           {/* menu */}
           <div className="navigation" ref={menuRef} onClick={toggleMenu}>
-            <ul className="menu flex items-center gap-[2.7rem]">
+            <ul className="menu flex items-center gap-[2.2rem]">
               {navLink.map((link, index) => (
                 <li key={index}>
                   <NavLink
@@ -66,8 +66,8 @@ const Header = () => {
                     exact
                     className={(navClass) =>
                       navClass.isActive
-                        ? "text-primaryColor text-[16px] leading-7 font-[600]"
-                        : " text-gray-600 text-[16px] leading-7 font-[500] hover:text-primaryColor duration-200 transition-all"
+                        ? "text-primaryColor text-base leading-7 font-[600] text-nowrap"
+                        : " text-gray-600 text-base leading-7 font-[500] hover:text-primaryColor duration-200 transition-all w-full text-nowrap"
                     }
                   >
                     {link.display}
