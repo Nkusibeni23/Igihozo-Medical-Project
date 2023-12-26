@@ -1,4 +1,4 @@
-import UserSchema from "../models/UserSchema";
+import UserSchema from "../models/UserSchema.js";
 
 export const updateUser = async (req, res) => {
   const id = req.params.id;
