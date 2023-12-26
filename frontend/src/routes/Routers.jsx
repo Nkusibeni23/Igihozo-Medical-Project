@@ -17,7 +17,7 @@ export default function Routers() {
       <Route path="/doctors/:id" element={<DoctorDetails />} />
       <Route path="/services" element={<Services />} />
       <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Signup />} />
+      <Route path="/Signup" element={<Signup />} />
       <Route path="/contact" element={<Contact />} />
     </Routes>
   );

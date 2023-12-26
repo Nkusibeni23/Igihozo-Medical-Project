@@ -65,8 +65,8 @@ const quickLink03 = [
 export default function footer() {
   const year = new Date().getFullYear();
   return (
-    <footer>
-      <div className="container py-3 xl:py-6">
+    <footer className=" flex py-6 xl:py-6">
+      <div className="container">
         <div className=" flex justify-between flex-col md:flex-row flex-wrap gap-[30px]">
           <div>
             <img src={Logo} alt="Image logo" className="w-2/5 h-3/5" />
