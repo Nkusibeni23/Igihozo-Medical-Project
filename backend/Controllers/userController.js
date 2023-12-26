@@ -67,3 +67,23 @@ export const getSingleUser = async (req, res) => {
     });
   }
 };
+
+export const getAllUser = async (req, res) => {
+  try {
+    // Get the user by their ID from the database
+    const users = await UserSchema.find({});
+    if (!updateUser) return res.status(404).send("No user with that ID");
+    res.status(200).json({
+      success: true,
+      message: "Users Found",
+      data: users,
+    });
+  } catch (error) {
+    console.log(`Error in users : ${error}`);
+    res.status(500).json({
+      success: false,
+      message: "users not found",
+      error: `Server Error : ${error}`,
+    });
+  }
+};
