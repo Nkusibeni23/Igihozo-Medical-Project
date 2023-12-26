@@ -3,6 +3,16 @@ import Doctors from "../models/DoctorSchema.js";
 import Jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 
+const generateToken = (user) => {
+  return Jwt.sign(
+    { id: user._id, role: user.role },
+    process.env.JWT_SECRET_KEY,
+    {
+      expiresIn: "31d", //Expires in 31 days
+    }
+  );
+};
+
 export const register = async (req, res) => {
   //   console.log('register', req.body);
 
@@ -67,8 +77,40 @@ export const register = async (req, res) => {
 };
 
 export const login = async (req, res) => {
-  const { email, password } = req.body;
+  const { email } = req.body;
   try {
     // Get user from database by email
-  } catch (error) {}
+    let user = null;
+    const patient = await User.findOne({ email });
+    const doctor = await Doctors.findOne({ email });
+    if (patient) {
+      user = patient;
+    }
+    if (doctor) {
+      user = doctor;
+    }
+    // check if user exist or not
+    if (!user) throw new Error("User not found");
+    // Checking Password
+    const isPasswordMatch = await bcrypt.compare(
+      req.body.password,
+      user.password
+    );
+    if (!isPasswordMatch) throw new Error("Wrong Password, Try again");
+
+    // get jw token
+    const token = generateToken(user);
+    const { password, role, appointment, ...others } = user._doc;
+    res.status(201).json({
+      success: true,
+      message: "Successfully Login!",
+      token,
+      data: {
+        ...others,
+      },
+      role,
+    });
+  } catch (error) {
+    res.status(500).json({ status: false, message: "Failed to Login" });
+  }
 };
