@@ -3,7 +3,7 @@ import cookieParser from "cookie-parser";
 import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
-
+import auth from "./Routes/auth.js";
 dotenv.config();
 const app = express();
 const port = 8000;
@@ -34,11 +34,9 @@ const connectDB = async () => {
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors(corsOptions));
+app.use("/api/v1/auth", auth);
 
 app.listen(port, () => {
   connectDB();
   console.log("Server running on port " + port);
 });
-
-// UheSCHLgx58YzNJ6
-// ndizibaidu23
