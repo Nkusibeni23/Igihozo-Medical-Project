@@ -46,3 +46,24 @@ export const deleteUser = async (req, res) => {
     });
   }
 };
+
+export const getSingleUser = async (req, res) => {
+  const id = req.params.id;
+  try {
+    // Get the user by their ID from the database
+    const user = await UserSchema.findById(id);
+    if (!updateUser) return res.status(404).send("No user with that ID");
+    res.status(200).json({
+      success: true,
+      message: "User Found!",
+      data: user,
+    });
+  } catch (error) {
+    console.log(`Error in user : ${error}`);
+    res.status(500).json({
+      success: false,
+      message: "No User Found!",
+      error: `Server Error : ${error}`,
+    });
+  }
+};
