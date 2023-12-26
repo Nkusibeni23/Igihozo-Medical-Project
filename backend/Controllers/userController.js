@@ -71,7 +71,7 @@ export const getSingleUser = async (req, res) => {
 export const getAllUser = async (req, res) => {
   try {
     // Get the user by their ID from the database
-    const users = await UserSchema.find({});
+    const users = await UserSchema.find({}).select("-password");
     if (!updateUser) return res.status(404).send("No user with that ID");
     res.status(200).json({
       success: true,
