@@ -16,6 +16,29 @@ app.get("/", (req, res) => {
   res.send("Api is working");
 });
 
+// database connection
+mongoose.set("strictQuery", false);
+const connectDB = async () => {
+  try {
+    await mongoose.connect(process.env.MONGO_URL, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log("MongoDB database is connected");
+  } catch (error) {
+    console.log("MongoDB is lost!");
+  }
+};
+
+// middleware
+app.use(express.json());
+app.use(cookieParser());
+app.use(cors(corsOptions));
+
 app.listen(port, () => {
+  connectDB();
   console.log("Server running on port " + port);
 });
+
+// UheSCHLgx58YzNJ6
+// ndizibaidu23
