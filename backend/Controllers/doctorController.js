@@ -68,22 +68,80 @@ export const getSingleDoctor = async (req, res) => {
   }
 };
 
+// export const getAllDoctor = async (req, res) => {
+//   try {
+//     const { query } = req.query;
+//     let doctors;
+//     if (query) {
+//       doctors = await DoctorSchema.find({
+//         isApproved: "approved",
+//         $or: [
+//           { name: { $regex: query, $options: "i" } },
+//           {
+//             specialization: { $regex: query, $options: "i" },
+//           },
+//         ],
+//       }).select("-password");
+//     } else {
+//       doctors = await DoctorSchema.find({ isApproved: "approved" }).select(
+//         "-password"
+//       );
+//     }
+//     // Get the user by their ID from the database
+//     const Doctors = await DoctorSchema.find({}).select("-password");
+//     if (!getAllDoctor) return res.status(404).send("No Doctor with that ID");
+//     res.status(200).json({
+//       success: true,
+//       message: "Doctors Found",
+//       data: Doctors,
+//     });
+//   } catch (error) {
+//     console.log(`Error in users : ${error}`);
+//     res.status(500).json({
+//       success: false,
+//       message: "doctors not found",
+//       error: `Server Error : ${error}`,
+//     });
+//   }
+// };
+
 export const getAllDoctor = async (req, res) => {
   try {
-    // Get the user by their ID from the database
-    const Doctors = await DoctorSchema.find({}).select("-password");
-    if (!getAllDoctor) return res.status(404).send("No Doctor with that ID");
+    const { query } = req.query;
+    let doctors;
+    if (query) {
+      doctors = await DoctorSchema.find({
+        isApproved: "approved",
+        $or: [
+          { name: { $regex: query, $options: "i" } },
+          { specialization: { $regex: query, $options: "i" } },
+        ],
+      }).select("-password");
+    } else {
+      doctors = await DoctorSchema.find({ isApproved: "approved" }).select(
+        "-password"
+      );
+    }
+
+    // Check if doctors array is empty
+    if (!doctors || doctors.length === 0) {
+      return res.status(404).json({
+        success: false,
+        message: "No doctors found",
+      });
+    }
+
     res.status(200).json({
       success: true,
-      message: "Doctors Found",
-      data: Doctors,
+      message: "Doctors found",
+      data: doctors,
     });
   } catch (error) {
-    console.log(`Error in users : ${error}`);
+    console.error(`Error in users: ${error}`);
     res.status(500).json({
       success: false,
-      message: "doctors not found",
-      error: `Server Error : ${error}`,
+      message: "Internal server error",
+      error: `Server Error: ${error}`,
     });
   }
 };
