@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable react-hooks/rules-of-hooks */
 import { createContext, useReducer } from "react";
 
@@ -20,7 +21,8 @@ const authReducer = (state, action) => {
     case "LOGIN_SUCCESS":
       return {
         user: action.payload.user,
-        token: action.payload.user,
+        token: action.payload.token,
+        role: action.payload.role,
       };
     case "LOGOUT":
       return {
@@ -33,7 +35,7 @@ const authReducer = (state, action) => {
   }
 };
 
-export const authContextProvider = ({ children }) => {
+export const AuthContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(authReducer, initialState);
 
   return (

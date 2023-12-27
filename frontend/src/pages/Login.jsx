@@ -3,7 +3,7 @@ import { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { BASE_URL } from "../../config";
 import { toast } from "react-toastify";
-import { authContext } from "../context api/authcontext.jsx";
+import { authContext } from "../context api/Authcontext.jsx";
 
 export default function Login() {
   const [formData, setFormData] = useState({

@@ -5,14 +5,12 @@ import "./index.css";
 import { BrowserRouter } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { authContext } from "./context api/authcontext.jsx";
+import { AuthContextProvider } from "./context api/Authcontext.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>
-      <authContext.Provider
-        value={{ user: null, token: null, role: null, dispatch: () => {} }}
-      >
+      <AuthContextProvider>
         <ToastContainer
           theme="dark"
           position="top-right"
@@ -21,7 +19,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           pauseOnHover={false}
         />
         <App />
-      </authContext.Provider>
+      </AuthContextProvider>
     </BrowserRouter>
   </React.StrictMode>
 );
