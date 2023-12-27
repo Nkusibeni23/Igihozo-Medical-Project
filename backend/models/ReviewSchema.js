@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import DoctorSchema from "./DoctorSchema.js";
 
 const reviewSchema = new mongoose.Schema(
   {
@@ -24,5 +25,34 @@ const reviewSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
+
+reviewSchema.pre(/^find/, function (next) {
+  this.populate({
+    path: "user",
+    select: "name photo",
+  });
+  next();
+});
+
+reviewSchema.static.calcAverageRatings = async function (doctorId) {
+  // this point the current review
+  const stats = await this.aggregate([
+    { $match: { doctor: doctorId } },
+    {
+      $group: {
+        _id: "$doctor",
+        numbOfRating: { $sum: 1 },
+        avgRating: { $avg: "$rating" },
+      },
+    },
+  ]);
+  await DoctorSchema.findByIdAndUpdate(doctorId, {
+    totalRating: stats[0].numbOfRating,
+    averageRating: stats[0].avgRating,
+  });
+};
+reviewSchema.post("save", function () {
+  this.constructors.calcAverageRatings(this.doctor);
+});
 
 export default mongoose.model("Review", reviewSchema);

@@ -51,7 +51,9 @@ export const getSingleDoctor = async (req, res) => {
   const id = req.params.id;
   try {
     // Get the user by their ID from the database
-    const Doctor = await DoctorSchema.findById(id).select("-password");
+    const Doctor = await DoctorSchema.findById(id)
+      .populate("reviews")
+      .select("-password");
     if (!getSingleDoctor) return res.status(404).send("No user with that ID");
     res.status(200).json({
       success: true,
@@ -67,43 +69,6 @@ export const getSingleDoctor = async (req, res) => {
     });
   }
 };
-
-// export const getAllDoctor = async (req, res) => {
-//   try {
-//     const { query } = req.query;
-//     let doctors;
-//     if (query) {
-//       doctors = await DoctorSchema.find({
-//         isApproved: "approved",
-//         $or: [
-//           { name: { $regex: query, $options: "i" } },
-//           {
-//             specialization: { $regex: query, $options: "i" },
-//           },
-//         ],
-//       }).select("-password");
-//     } else {
-//       doctors = await DoctorSchema.find({ isApproved: "approved" }).select(
-//         "-password"
-//       );
-//     }
-//     // Get the user by their ID from the database
-//     const Doctors = await DoctorSchema.find({}).select("-password");
-//     if (!getAllDoctor) return res.status(404).send("No Doctor with that ID");
-//     res.status(200).json({
-//       success: true,
-//       message: "Doctors Found",
-//       data: Doctors,
-//     });
-//   } catch (error) {
-//     console.log(`Error in users : ${error}`);
-//     res.status(500).json({
-//       success: false,
-//       message: "doctors not found",
-//       error: `Server Error : ${error}`,
-//     });
-//   }
-// };
 
 export const getAllDoctor = async (req, res) => {
   try {
