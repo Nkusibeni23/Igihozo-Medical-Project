@@ -71,7 +71,7 @@ export const getSingleDoctor = async (req, res) => {
 export const getAllDoctor = async (req, res) => {
   try {
     // Get the user by their ID from the database
-    const users = await DoctorSchema.find({}).select("-password");
+    const Doctors = await DoctorSchema.find({}).select("-password");
     if (!getAllDoctor) return res.status(404).send("No Doctor with that ID");
     res.status(200).json({
       success: true,

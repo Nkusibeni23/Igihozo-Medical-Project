@@ -26,8 +26,8 @@ export const register = async (req, res) => {
       user = Doctors.findOne({ email });
     }
     // Check if you is exist
-    if (user) return res.status(400).send("The user already exists");
-    if (user) return res.status(409).send("Email already in use");
+    // if (user) return res.status(400).send("The user already exists");
+    // if (user) return res.status(409).send("Email already in use");
 
     // hash password
     const salt = await bcrypt.genSalt(10);
