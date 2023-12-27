@@ -5,6 +5,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import auth from "./Routes/auth.js";
 import userRoute from "./Routes/user.js";
+import DoctorRoute from "./Routes/doctors.js";
 
 dotenv.config();
 const app = express();
@@ -38,6 +39,7 @@ app.use(cookieParser());
 app.use(cors(corsOptions));
 app.use("/api/v1/auth", auth);
 app.use("/api/v1/users", userRoute);
+app.use("/api/v1/doctors", DoctorRoute);
 
 app.listen(port, () => {
   connectDB();
