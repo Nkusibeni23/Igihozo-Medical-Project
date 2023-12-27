@@ -1,12 +1,16 @@
-/* eslint-disable no-unused-vars */
 import SignUpImage from "../assets/images/signup.gif";
-import avatar from "../assets/images/doctor-img01.png";
-import { Link } from "react-router-dom";
+// import avatar from "../assets/images/doctor-img01.png";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import uploadImageToClouding from "../utils/uploadCloudinary";
+import { BASE_URL } from "../../config";
+import { toast } from "react-toastify";
+import HashLoader from "react-spinners/HashLoader";
 
 export default function Signup() {
   const [selectedFile, setSelectedFile] = useState(null);
   const [previewURL, setPreviewURL] = useState("");
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -15,6 +19,7 @@ export default function Signup() {
     gender: "",
     role: "patient",
   });
+  const navigate = useNavigate();
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -22,10 +27,37 @@ export default function Signup() {
     // Make sure the file is an image.
     const file = event.target.files[0];
 
-    console.log(file);
+    const data = await uploadImageToClouding(file);
+    setPreviewURL(data.url);
+    setSelectedFile(data.url);
+    setFormData({ ...formData, photo: data.url });
+
+    // console.log(file);
   };
   const submitHandler = async (event) => {
+    // console.log(formData);
     event.preventDefault();
+    setLoading(true);
+    try {
+      const res = await fetch(`${BASE_URL}/auth/register`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const { message } = await res.json();
+      if (!res.ok) {
+        throw new Error(message);
+      }
+      setLoading(false);
+      toast.success(message);
+      navigate("/login");
+    } catch (error) {
+      setLoading(false);
+      toast.error(error.message);
+    }
   };
   return (
     <section className="px-4 lg:px-0">
@@ -121,13 +153,15 @@ export default function Signup() {
                 </label>
               </div>
               <div className=" mb-5 flex items-center gap-3">
-                <figure className=" w-[60px] h-[60px] rounded-full border-2 border-solid border-primaryColor flex items-center justify-center">
-                  <img
-                    src={avatar}
-                    alt="Doctor Image"
-                    className=" rounded-full w-full"
-                  />
-                </figure>
+                {selectedFile && (
+                  <figure className=" w-[60px] h-[60px] rounded-full border-2 border-solid border-primaryColor flex items-center justify-center">
+                    <img
+                      src={previewURL}
+                      alt="Doctor Image"
+                      className=" rounded-full w-full"
+                    />
+                  </figure>
+                )}
                 <div className=" relative w-[140px] h-[45px]">
                   <input
                     type="file"
@@ -147,10 +181,11 @@ export default function Signup() {
               </div>
               <div>
                 <button
+                  disabled={loading && true}
                   type="submit"
                   className="w-full py-3 px-3 text-center text-white font-semibold bg-primaryColor rounded-xl cursor-pointer hover:opacity-90 uppercase transition-all duration-300"
                 >
-                  Sign Up
+                  {loading ? <HashLoader size={35} color="#ffff" /> : "Sign Up"}
                 </button>
                 <div className="px-4 ml-4 text-nowrap text-sm sm:text-base">
                   <p className="font-medium mt-5 text-gray-500">
