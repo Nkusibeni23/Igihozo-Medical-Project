@@ -1,3 +1,4 @@
+import BookingSchema from "../models/BookingSchema.js";
 import DoctorSchema from "../models/DoctorSchema.js";
 
 export const updateDoctor = async (req, res) => {
@@ -107,6 +108,34 @@ export const getAllDoctor = async (req, res) => {
       success: false,
       message: "Internal server error",
       error: `Server Error: ${error}`,
+    });
+  }
+};
+
+export const getDoctorProfile = async (req, res) => {
+  const doctorId = req.userId;
+
+  try {
+    const doctor = await DoctorSchema.find(doctorId);
+
+    if (!doctor) {
+      return res.status(401).json({
+        success: false,
+        message: "Not authorized to access this information",
+      });
+    }
+    const { password, ...rest } = doctor._doc;
+    const appointments = await BookingSchema.find({ doctor: doctorId });
+    res.status(200).json({
+      success: true,
+      data: { ...rest, appointments },
+      message: "profile Info is getting",
+    });
+  } catch (error) {
+    console.log(`Error in profile : ${error}`);
+    return res.status(401).json({
+      success: false,
+      message: "Something went Wrong",
     });
   }
 };
