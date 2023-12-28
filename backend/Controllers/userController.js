@@ -1,4 +1,6 @@
 import UserSchema from "../models/UserSchema.js";
+import BookingSchema from "../models/BookingSchema.js";
+import DoctorSchema from "../models/DoctorSchema.js";
 
 export const updateUser = async (req, res) => {
   const id = req.params.id;
@@ -113,4 +115,23 @@ export const getUserProfile = async (req, res) => {
       message: "Something went Wrong",
     });
   }
+};
+
+export const getMyAppointments = async (req, res) => {
+  try {
+    // step-1: retrieve appointments from booking
+    const bookings = await BookingSchema.find({ user: req.userId });
+    // step-2: extract doctor ids from appointment bookings
+    const doctorId = bookings.map((el) => el.doctor.id);
+    // step-3: retrieve doctors using doctor ids
+    const doctors = await DoctorSchema.find({ _id: { $in: doctorId } }).select(
+      "-password"
+    );
+    // combine both the results and send it as response
+    res.status(200).json({
+      success: true,
+      message: "Appointments are getting",
+      data: doctors,
+    });
+  } catch (error) {}
 };
