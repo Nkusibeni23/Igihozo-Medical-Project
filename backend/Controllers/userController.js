@@ -87,3 +87,30 @@ export const getAllUser = async (req, res) => {
     });
   }
 };
+
+export const getUserProfile = async (req, res) => {
+  const userId = req.userId;
+
+  try {
+    const user = await UserSchema.find(userId);
+
+    if (!user) {
+      return res.status(401).json({
+        success: false,
+        message: "Not authorized to access this information",
+      });
+    }
+    const { password, ...rest } = user._doc;
+    res.status(200).json({
+      success: true,
+      data: { ...rest },
+      message: "profile Info is getting",
+    });
+  } catch (error) {
+    console.log(`Error in profile : ${error}`);
+    return res.status(401).json({
+      success: false,
+      message: "Something went Wrong",
+    });
+  }
+};
