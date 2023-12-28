@@ -7,6 +7,8 @@ import Doctors from "../pages/Doctors/Doctors";
 import DoctorDetails from "../pages/Doctors/DoctorDetails";
 
 import { Routes, Route } from "react-router-dom";
+import MyAccount from "../Dashboard/user-account/MyAccount";
+import Dashboard from "../Dashboard/doctor-account/dashboard";
 
 export default function Routers() {
   return (
@@ -19,6 +21,8 @@ export default function Routers() {
       <Route path="/login" element={<Login />} />
       <Route path="/Signup" element={<Signup />} />
       <Route path="/contact" element={<Contact />} />
+      <Route path="/users/profile/me" element={<MyAccount />} />
+      <Route path="/doctor/profile/me" element={<Dashboard />} />
     </Routes>
   );
 }
