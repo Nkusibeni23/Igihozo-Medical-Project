@@ -27,10 +27,12 @@ export default function Routers() {
         path="/users/profile/me"
         element={
           <ProtectedRoute allowedRoles={["patient"]}>
-            <MyAccount />{" "}
+            <MyAccount />
           </ProtectedRoute>
         }
+        exact="true"
       />
+
       <Route
         path="/doctor/profile/me"
         element={
